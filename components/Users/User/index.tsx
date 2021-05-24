@@ -1,7 +1,6 @@
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
-import {Divider} from "react-native-elements";
-import {Ionicons} from "@expo/vector-icons";
+import Icon from "react-native-vector-icons/Ionicons";
 import moment from 'moment';
 import {useNavigation} from "@react-navigation/native";
 
@@ -38,7 +37,7 @@ export default function User(props: TUserProps) {
                     <Text style={{ color: 'white', marginTop: 20 }}>Subscription expires in: {date}</Text>
                 </View>
                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                    <Ionicons name={"eye-outline"} color={'white'} size={30} />
+                    <Icon name={"eye-outline"} color={'white'} size={30} />
                 </View>
             </View>
         </TouchableOpacity>

@@ -3,16 +3,18 @@
  * https://reactnavigation.org/docs/bottom-tab-navigator
  */
 
-import {Ionicons} from '@expo/vector-icons';
+import Icon from "react-native-vector-icons/Ionicons";
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import {BottomTabParamList, UsersParamList} from '../types';
+import {BottomTabParamList, UsersParamList, QuestionsParamList} from '../types';
 import UsersScreen from "../screens/UsersScreen";
 import UserInfoAndUpdateScreen from "../screens/UserInfoAndUpdateScreen";
+import QuestionsScreen from "../screens/QuestionsScreen";
+import NewAnswerScreen from "../screens/NewAnswerScreen";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -31,7 +33,14 @@ export default function BottomTabNavigator() {
                 name="Users"
                 component={UserNavigator}
                 options={{
-                    tabBarIcon: ({color}) => <Ionicons name="people-outline" color={color} size={30}/>,
+                    tabBarIcon: ({color}) => <Icon name="people-outline" color={color} size={30}/>,
+                }}
+            />
+            <BottomTab.Screen
+                name="Questions"
+                component={QuestionsNavigator}
+                options={{
+                    tabBarIcon: ({color}) => <Icon name="help-circle-outline" color={color} size={30}/>,
                 }}
             />
         </BottomTab.Navigator>
@@ -40,8 +49,8 @@ export default function BottomTabNavigator() {
 
 // You can explore the built-in icon families and icons on the web at:
 // https://icons.expo.fyi/
-function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>['name']; color: string }) {
-    return <Ionicons size={30} style={{marginBottom: -3}} {...props} />;
+function TabBarIcon(props: { name: React.ComponentProps<typeof Icon>['name']; color: string }) {
+    return <Icon size={30} style={{marginBottom: -3}} {...props} />;
 }
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
@@ -64,5 +73,24 @@ function UserNavigator() {
                 }}
             />
         </UsersStack.Navigator>
+    );
+}
+
+const QuestionsStack = createStackNavigator<QuestionsParamList>();
+
+function QuestionsNavigator() {
+    return (
+        <QuestionsStack.Navigator>
+            <QuestionsStack.Screen
+                name="QuestionsScreen"
+                component={QuestionsScreen}
+                options={{headerTitle: 'Поддержка'}}
+            />
+            <QuestionsStack.Screen
+                name="AnswerScreen"
+                component={NewAnswerScreen}
+                options={{headerTitle: 'Ответить на обращение'}}
+            />
+        </QuestionsStack.Navigator>
     );
 }

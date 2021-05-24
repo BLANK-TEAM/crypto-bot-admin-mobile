@@ -12,7 +12,7 @@ import {
 import {Button, CheckBox, LinearProgress} from 'react-native-elements';
 import {useNavigation} from '@react-navigation/native';
 import {RouteProp} from '@react-navigation/native';
-import {Ionicons} from '@expo/vector-icons';
+import Icon from "react-native-vector-icons/Ionicons";
 import axios, {AxiosResponse} from 'axios';
 
 // @ts-ignore
@@ -86,7 +86,7 @@ export default function UserInfo({route}: RouteProp<{
         <SafeAreaView style={styles.container}>
             <View style={styles.headerContainer}>
                 <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <Ionicons name={"close-outline"} size={30} color={'white'}/>
+                    <Icon name={"close-outline"} size={30} color={'white'}/>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.btn} onPress={save}>
                     <Text style={styles.textBtn}>Save</Text>
@@ -187,6 +187,7 @@ const styles = StyleSheet.create({
     mainContainer: {
         padding: 15,
         width: '100%',
+        marginTop: 10
     },
     textInput: {
         color: 'white',
